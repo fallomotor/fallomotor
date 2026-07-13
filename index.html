@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FALLOMOTOR - Diagnóstico inteligente</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #101820;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 30px 15px;
+    background: linear-gradient(135deg,#0d6efd,#00c6ff);
+}
+
+.logo {
+    font-size: 45px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.car {
+    font-size: 55px;
+}
+
+.subtitle {
+    font-size: 18px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 25px auto;
+    background: white;
+    color: #222;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #084298;
+}
+
+.resultado {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e9f5ff;
+    border-radius: 10px;
+    display: none;
+}
+
+footer {
+    text-align:center;
+    padding:20px;
+    font-size:14px;
+    color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="car">🚗⚙️</div>
+<div class="logo">FALLOMOTOR</div>
+<div class="subtitle">
+Detecta averías de tu vehículo con ayuda inteligente
+</div>
+</header>
+
+
+<div class="container">
+
+<h2>Consulta tu avería</h2>
+
+<label>Marca del vehículo</label>
+<input id="marca" placeholder="Ej: BMW, Seat, Ford">
+
+<label>Modelo</label>
+<input id="modelo" placeholder="Ej: León, Golf, Focus">
+
+<label>Año</label>
+<input id="anio" placeholder="Ej: 2018">
+
+<label>Motor</label>
+<input id="motor" placeholder="Ej: 2.0 TDI">
+
+<label>Kilómetros</label>
+<input id="km" placeholder="Ej: 150000">
+
+<label>Código OBD (opcional)</label>
+<input id="obd" placeholder="Ej: P0301">
+
+<label>Síntomas</label>
+<textarea id="sintomas" rows="5" placeholder="Describe el problema: ruidos, humo, pérdida de potencia..."></textarea>
+
+
+<button onclick="diagnosticar()">
+🔍 Analizar avería
+</button>
+
+
+<div class="resultado" id="resultado"></div>
+
+</div>
+
+
+<footer>
+FALLOMOTOR © 2026 - Diagnóstico inteligente de vehículos
+</footer>
+
+
+<script>
+
+function diagnosticar(){
+
+let sintomas = document.getElementById("sintomas").value;
+
+let resultado = document.getElementById("resultado");
+
+resultado.style.display="block";
+
+resultado.innerHTML = `
+<h3>Resultado del diagnóstico</h3>
+
+<p><b>Posibles causas:</b></p>
+<ul>
+<li>Revisar sistema de admisión o combustible.</li>
+<li>Comprobar sensores relacionados con el fallo.</li>
+<li>Realizar lectura de códigos OBD profesionales.</li>
+</ul>
+
+<p><b>Gravedad:</b> Pendiente de análisis avanzado.</p>
+
+<p><b>Próxima mejora:</b> Conectar inteligencia artificial para analizar todos los datos del vehículo.</p>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
