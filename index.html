@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FALLOMOTOR V1.6 - Diagnosis IA</title>
+<title>FALLOMOTOR V1.9 - Historial inteligente</title>
 
 
 <style>
@@ -24,6 +24,7 @@ background:#0b1220;
 color:white;
 
 }
+
 
 
 header{
@@ -51,7 +52,6 @@ letter-spacing:5px;
 
 color:#94a3b8;
 font-size:18px;
-margin-top:10px;
 
 }
 
@@ -83,7 +83,6 @@ h2{
 font-family:'Arial Black',Arial,sans-serif;
 text-transform:uppercase;
 letter-spacing:1.5px;
-font-size:26px;
 
 }
 
@@ -117,9 +116,9 @@ button{
 width:100%;
 padding:18px;
 background:#2563eb;
-color:white;
 border:0;
 border-radius:15px;
+color:white;
 font-size:20px;
 font-weight:bold;
 
@@ -136,19 +135,7 @@ background:#020617;
 
 
 
-.info-line{
-
-background:#111827;
-padding:12px;
-border-radius:10px;
-margin:8px 0;
-
-}
-
-
-
 </style>
-
 
 </head>
 
@@ -159,14 +146,13 @@ margin:8px 0;
 
 <header>
 
-
 <div class="logo">
 FALLOMOTOR
 </div>
 
 
 <div class="subtitle">
-Diagnosis inteligente con IA
+Diagnosis + Historial inteligente
 </div>
 
 
@@ -178,10 +164,12 @@ Diagnosis inteligente con IA
 
 
 
+
+
 <div class="card">
 
 
-<h2>🚗 Datos del vehículo</h2>
+<h2>🚗 Vehículo</h2>
 
 
 <input id="marca" placeholder="Marca">
@@ -197,7 +185,7 @@ Diagnosis inteligente con IA
 
 <select id="combustible">
 
-<option>Selecciona combustible</option>
+<option>Combustible</option>
 <option>Diésel</option>
 <option>Gasolina</option>
 <option>Híbrido</option>
@@ -220,34 +208,14 @@ Diagnosis inteligente con IA
 <input id="dtc" placeholder="Código DTC">
 
 
-<textarea id="detalle" placeholder="Describe el fallo, ruido o comportamiento del vehículo"></textarea>
-
-
-</div>
-
-
-
-<div class="card">
-
-
-<h2>🤖 Preparación IA</h2>
-
-
-<div class="info-line">
-Los datos introducidos serán utilizados para crear un diagnóstico más preciso.
-</div>
-
-
-<div class="info-line">
-Cuantos más datos y síntomas se aporten, mayor será la precisión.
-</div>
+<textarea id="detalle" placeholder="Describe el fallo del vehículo"></textarea>
 
 
 </div>
 <div class="card">
 
 
-<h2>⚠️ Selecciona síntomas</h2>
+<h2>⚠️ Síntomas</h2>
 
 
 
@@ -255,7 +223,6 @@ Cuantos más datos y síntomas se aporten, mayor será la precisión.
 
 
 <h3>🔧 MOTOR</h3>
-
 
 <div class="symptom">Pérdida de potencia</div>
 <div class="symptom">Tirones</div>
@@ -275,11 +242,9 @@ Cuantos más datos y síntomas se aporten, mayor será la precisión.
 
 <h3>🛑 FRENOS</h3>
 
-
 <div class="symptom">Ruido al frenar</div>
 <div class="symptom">Vibración al frenar</div>
 <div class="symptom">Pedal blando</div>
-<div class="symptom">Pérdida de frenada</div>
 
 
 </div>
@@ -292,10 +257,8 @@ Cuantos más datos y síntomas se aporten, mayor será la precisión.
 
 <h3>⚙️ SUSPENSIÓN Y DIRECCIÓN</h3>
 
-
 <div class="symptom">Ruido suspensión</div>
 <div class="symptom">Ruido dirección</div>
-<div class="symptom">Golpes en baches</div>
 <div class="symptom">Dirección dura</div>
 <div class="symptom">Vibración volante</div>
 
@@ -308,46 +271,10 @@ Cuantos más datos y síntomas se aporten, mayor será la precisión.
 <div class="system">
 
 
-<h3>🔩 TRANSMISIÓN</h3>
-
-
-<div class="symptom">Embrague patina</div>
-<div class="symptom">Golpes al cambiar</div>
-<div class="symptom">Ruido caja cambios</div>
-<div class="symptom">Dificultad engranar marchas</div>
-
-
-</div>
-
-
-
-
-<div class="system">
-
-
-<h3>💨 HUMOS Y EMISIONES</h3>
-
-
-<div class="symptom">Humo negro</div>
-<div class="symptom">Humo blanco</div>
-<div class="symptom">Humo azul</div>
-<div class="symptom">Olor combustible</div>
-
-
-</div>
-
-
-
-
-<div class="system">
-
-
 <h3>💻 ELECTRICIDAD Y ELECTRÓNICA</h3>
-
 
 <div class="symptom">Testigo motor</div>
 <div class="symptom">Fallos eléctricos</div>
-<div class="symptom">Problemas batería</div>
 <div class="symptom">Fallo sensores</div>
 
 
@@ -359,33 +286,23 @@ Cuantos más datos y síntomas se aporten, mayor será la precisión.
 <div class="system">
 
 
-<h3>❄️ CLIMATIZACIÓN</h3>
+<h3>💨 EMISIONES</h3>
 
-
-<div class="symptom">No enfría</div>
-<div class="symptom">No calienta</div>
-<div class="symptom">Ruido climatizador</div>
-<div class="symptom">Mal olor</div>
-
-
-</div>
-
-
-
-
-<div class="system">
-
-
-<h3>📝 OTROS</h3>
-
-
-<textarea id="otros" placeholder="Escribe cualquier otro síntoma o detalle"></textarea>
+<div class="symptom">Humo negro</div>
+<div class="symptom">Humo blanco</div>
+<div class="symptom">Humo azul</div>
 
 
 </div>
 
 
+
+
+<textarea id="otros" placeholder="Otros síntomas"></textarea>
+
+
 </div>
+
 
 
 
@@ -404,7 +321,7 @@ ANALIZAR AVERÍA
 <div id="resultado" class="card result">
 
 
-<h2>📋 INFORME FALLOMOTOR IA</h2>
+<h2>📋 INFORME FALLOMOTOR</h2>
 
 
 <div id="textoResultado">
@@ -412,6 +329,58 @@ ANALIZAR AVERÍA
 Esperando análisis...
 
 </div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>📚 Historial de casos</h2>
+
+
+<input id="buscarHistorial" placeholder="Buscar marca, modelo o avería">
+
+
+<button onclick="verHistorial()">
+
+BUSCAR CASOS
+
+</button>
+
+
+<div id="listaHistorial">
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>✅ Reparación realizada</h2>
+
+
+<textarea id="reparacion" placeholder="Solución aplicada"></textarea>
+
+
+<button onclick="guardarCaso()">
+
+GUARDAR CASO
+
+</button>
 
 
 </div>
@@ -445,6 +414,17 @@ background:#2563eb;
 
 }
 
+
+.case{
+
+background:#111827;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+
+}
+
+
 </style>
 
 
@@ -465,28 +445,28 @@ item.onclick=function(){
 this.classList.toggle("active");
 
 
-let texto=this.innerText;
+let nombre=this.innerText;
 
 
-if(sintomasSeleccionados.includes(texto)){
+if(sintomasSeleccionados.includes(nombre)){
 
 
-sintomasSeleccionados=sintomasSeleccionados.filter(
-s=>s!==texto
+sintomasSeleccionados =
+sintomasSeleccionados.filter(
+s=>s!==nombre
 );
 
 
 }else{
 
 
-sintomasSeleccionados.push(texto);
+sintomasSeleccionados.push(nombre);
 
 
 }
 
 
 }
-
 
 
 });
@@ -495,29 +475,77 @@ sintomasSeleccionados.push(texto);
 
 
 
-
 function analizar(){
 
 
-let datos=sintomasSeleccionados.length;
+let historial =
+JSON.parse(localStorage.getItem("fallomotor_historial")) || [];
 
-let dtc=document.getElementById("dtc").value;
 
-let otros=document.getElementById("otros").value;
+let coincidencias=0;
+
+
+historial.forEach(caso=>{
+
+
+sintomasSeleccionados.forEach(s=>{
+
+
+if(caso.sintomas.includes(s)){
+
+coincidencias++;
+
+}
+
+
+});
+
+
+});
+
+
+
+
+
+let base=50;
+
+
+if(coincidencias>0){
+
+base+=20;
+
+}
+
+
+if(sintomasSeleccionados.length>=3){
+
+base+=15;
+
+}
+
+
+
+if(base>95){
+
+base=95;
+
+}
+
+
 
 
 
 let precision="Baja";
 
 
-if(datos>=2){
+if(base>=70){
 
 precision="Media";
 
 }
 
 
-if(datos>=4 && dtc!=""){
+if(base>=85){
 
 precision="Alta";
 
@@ -532,120 +560,36 @@ let resultado="";
 
 resultado+=
 
-"<h3>📊 Datos analizados</h3>"+
-"<p>Síntomas: "+datos+"</p>"+
-"<p>Precisión estimada: <b>"+precision+"</b></p>"+
-"<p>La precisión aumenta al añadir más información del vehículo y síntomas.</p>";
+"<h3>📊 Análisis inteligente</h3>"+
+"<p>Síntomas analizados: "+sintomasSeleccionados.length+"</p>"+
+"<p>Casos similares encontrados: "+coincidencias+"</p>"+
+"<p>Precisión estimada: <b>"+precision+"</b></p>";
 
 
 
-
-
-// Diagnóstico básico inteligente
-
-
-
-if(sintomasSeleccionados.includes("Pérdida de potencia")){
 
 
 resultado+=
 
-"<h3>🔧 Posible avería principal</h3>"+
-"<p><b>Sistema motor:</b></p>"+
-"<p>- EGR.<br>"+
-"- Turbo.<br>"+
-"- Admisión.<br>"+
-"- Caudalímetro.</p>"+
-"<p>Comprobar valores de sensores y presión de sobrealimentación.</p>";
-
-}
+"<h3>🎯 Diagnóstico probable</h3>"+
+"<div class='case'>"+
+"<b>Evaluación FALLOMOTOR:</b><br>"+
+"El resultado se ha comparado con síntomas y casos guardados."
++"</div>";
 
 
 
-if(sintomasSeleccionados.includes("Ruido de motor")){
+
+
+if(coincidencias>0){
 
 
 resultado+=
 
-"<h3>🔧 Ruido de motor</h3>"+
-"<p>Posibles causas:</p>"+
-"<p>- Distribución.<br>"+
-"- Lubricación.<br>"+
-"- Componentes internos.</p>";
+"<div class='case'>"+
+"📚 Se han encontrado casos parecidos en el historial."
++"</div>";
 
-}
-
-
-
-if(sintomasSeleccionados.includes("Humo negro")){
-
-
-resultado+=
-
-"<h3>💨 Sistema emisiones</h3>"+
-"<p>Posibles causas:</p>"+
-"<p>- EGR.<br>"+
-"- Inyección.<br>"+
-"- Falta de aire.</p>";
-
-}
-
-
-
-if(sintomasSeleccionados.includes("Ruido al frenar")){
-
-
-resultado+=
-
-"<h3>🛑 Frenos</h3>"+
-"<p>Revisar:</p>"+
-"<p>- Pastillas.<br>"+
-"- Discos.<br>"+
-"- Pinzas.</p>";
-
-}
-
-
-
-if(sintomasSeleccionados.includes("Ruido suspensión")
-|| sintomasSeleccionados.includes("Ruido dirección")){
-
-
-resultado+=
-
-"<h3>⚙️ Suspensión y dirección</h3>"+
-"<p>Posibles causas:</p>"+
-"<p>- Amortiguadores.<br>"+
-"- Silentblocks.<br>"+
-"- Rótulas.</p>";
-
-}
-
-
-
-
-
-if(dtc!=""){
-
-
-resultado+=
-
-"<h3>🔍 Código DTC</h3>"+
-"<p>"+dtc+"</p>"+
-"<p>El código ayudará a mejorar el diagnóstico IA.</p>";
-
-}
-
-
-
-
-if(otros!=""){
-
-
-resultado+=
-
-"<h3>📝 Información adicional</h3>"+
-"<p>"+otros+"</p>";
 
 }
 
@@ -654,8 +598,8 @@ resultado+=
 
 resultado+=
 
-"<h3>⚠️ Urgencia</h3>"+
-"<p>Realizar comprobaciones antes de sustituir piezas.</p>";
+"<h3>⚠️ Recomendación</h3>"+
+"<p>Confirmar la avería realizando comprobaciones antes de sustituir componentes.</p>";
 
 
 
@@ -666,13 +610,136 @@ document.getElementById("textoResultado").innerHTML=resultado;
 document.getElementById("resultado").style.display="block";
 
 
+}
+
+
+
+
+
+
+
+
+function guardarCaso(){
+
+
+let caso={
+
+
+fecha:new Date().toLocaleString(),
+
+marca:document.getElementById("marca").value,
+
+modelo:document.getElementById("modelo").value,
+
+ano:document.getElementById("ano").value,
+
+motor:document.getElementById("motor").value,
+
+dtc:document.getElementById("dtc").value,
+
+sintomas:sintomasSeleccionados,
+
+reparacion:document.getElementById("reparacion").value
+
+
+};
+
+
+
+
+
+let historial =
+JSON.parse(localStorage.getItem("fallomotor_historial")) || [];
+
+
+
+historial.push(caso);
+
+
+
+localStorage.setItem(
+"fallomotor_historial",
+JSON.stringify(historial)
+);
+
+
+
+alert("Caso guardado en historial");
+
 
 }
 
 
 
-</script>
 
+
+
+
+function verHistorial(){
+
+
+let texto=
+document.getElementById("buscarHistorial").value.toLowerCase();
+
+
+
+let historial =
+JSON.parse(localStorage.getItem("fallomotor_historial")) || [];
+
+
+
+let salida="";
+
+
+
+historial.forEach(caso=>{
+
+
+let datos=
+(caso.marca+
+" "+
+caso.modelo+
+" "+
+caso.reparacion).toLowerCase();
+
+
+
+if(datos.includes(texto)){
+
+
+salida+=
+
+"<div class='case'>"+
+"<b>"+caso.marca+" "+caso.modelo+"</b><br>"+
+"Motor: "+caso.motor+"<br>"+
+"Reparación: "+caso.reparacion+
+"</div>";
+
+
+
+}
+
+
+});
+
+
+
+if(salida==""){
+
+salida="No hay casos encontrados.";
+
+}
+
+
+
+document.getElementById("listaHistorial").innerHTML=salida;
+
+
+
+}
+
+
+</script>
 
 
 </body>
