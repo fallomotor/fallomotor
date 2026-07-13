@@ -506,45 +506,34 @@ Esperando análisis...
 
 
 </div>
-<script>
 
+<script>
 
 let sintomasSeleccionados=[];
 
 
-
 document.querySelectorAll(".symptom").forEach(item=>{
-
 
 item.onclick=function(){
 
-
 this.classList.toggle("active");
-
 
 let nombre=this.innerText;
 
 
 if(sintomasSeleccionados.includes(nombre)){
 
-
 sintomasSeleccionados=sintomasSeleccionados.filter(s=>s!==nombre);
-
 
 }else{
 
-
 sintomasSeleccionados.push(nombre);
 
-
 }
 
-
 }
-
 
 });
-
 
 
 
@@ -554,115 +543,205 @@ function analizar(){
 
 let dtc=document.getElementById("dtc").value.toUpperCase();
 
-
-let resultado="";
-
+let otros=document.getElementById("otros").value;
 
 
-// BASE INICIAL DE DIAGNÓSTICO
+let datosAnalizados=sintomasSeleccionados.length;
 
 
-if(
-sintomasSeleccionados.includes("Pérdida de potencia") &&
-sintomasSeleccionados.includes("Humo negro")
-){
+let precision="Baja";
 
-resultado += 
-"<h3>Posible avería motor</h3>"+
-"<p><b>Causas probables:</b></p>"+
-"<p>- Válvula EGR sucia o bloqueada.<br>"+
-"- Problemas de admisión.<br>"+
-"- Caudalímetro con lectura incorrecta.</p>"+
-"<p><b>Comprobaciones:</b><br>"+
-"Revisar EGR, admisión y valores de sensores.</p>";
+
+
+if(datosAnalizados>=2){
+
+precision="Media";
+
+}
+
+
+if(datosAnalizados>=4 && dtc){
+
+precision="Alta";
 
 }
 
 
 
-else if(
+let resultado="";
+
+
+
+resultado +=
+"<h3>📊 Precisión del diagnóstico</h3>"+
+"<p><b>Datos analizados:</b> "+datosAnalizados+"</p>"+
+"<p><b>Nivel de precisión:</b> "+precision+"</p>";
+
+
+
+
+
+// MOTOR
+
+
+if(sintomasSeleccionados.includes("Pérdida de potencia")){
+
+
+resultado +=
+
+"<h3>🔧 Posible problema motor</h3>"+
+"<p><b>Posibles causas:</b><br>"+
+"- EGR sucia o bloqueada.<br>"+
+"- Caudalímetro.<br>"+
+"- Turbo o admisión.<br>"+
+"- Filtro partículas.</p>"+
+"<p><b>Comprobar:</b><br>"+
+"Valores de sensores, admisión y sistema de sobrealimentación.</p>";
+
+}
+
+
+
+
+if(sintomasSeleccionados.includes("Humo negro")){
+
+
+resultado +=
+
+"<h3>💨 Humo negro</h3>"+
+"<p><b>Posibles causas:</b><br>"+
+"- Exceso de combustible.<br>"+
+"- Falta de aire.<br>"+
+"- EGR.<br>"+
+"- Inyección.</p>";
+
+}
+
+
+
+
+
+if(sintomasSeleccionados.includes("Humo blanco")){
+
+
+resultado +=
+
+"<h3>💨 Humo blanco</h3>"+
+"<p><b>Posibles causas:</b><br>"+
+"- Refrigerante en combustión.<br>"+
+"- Junta de culata.<br>"+
+"- Condensación en frío.</p>";
+
+}
+
+
+
+
+
+if(
 sintomasSeleccionados.includes("Ruido de motor") ||
 sintomasSeleccionados.includes("Ruido metálico")
 ){
 
 
 resultado +=
-"<h3>Posible problema mecánico</h3>"+
-"<p><b>Causas probables:</b><br>"+
-"- Desgaste de componentes internos.<br>"+
-"- Problema de distribución.<br>"+
-"- Falta de lubricación.</p>"+
-"<p><b>Comprobación recomendada:</b><br>"+
-"Localizar origen exacto del ruido antes de circular.</p>";
+
+"<h3>🔧 Ruido motor</h3>"+
+"<p><b>Posibles causas:</b><br>"+
+"- Distribución.<br>"+
+"- Taqués hidráulicos.<br>"+
+"- Falta de lubricación.<br>"+
+"- Desgaste interno.</p>";
 
 }
 
 
 
-else if(
+
+// FRENOS
+
+
+if(
 sintomasSeleccionados.includes("Ruido al frenar") ||
 sintomasSeleccionados.includes("Vibración al frenar")
 ){
 
 
 resultado +=
-"<h3>Posible avería de frenos</h3>"+
-"<p><b>Causas probables:</b><br>"+
+
+"<h3>🛑 Sistema de frenos</h3>"+
+"<p><b>Posibles causas:</b><br>"+
 "- Pastillas desgastadas.<br>"+
 "- Discos deformados.<br>"+
-"- Pinza de freno con problemas.</p>"+
-"<p><b>Comprobación:</b><br>"+
-"Revisar discos, pastillas y sistema hidráulico.</p>";
+"- Pinza de freno.</p>";
 
 }
 
 
 
-else if(
+
+// SUSPENSION
+
+
+if(
 sintomasSeleccionados.includes("Ruido suspensión") ||
-sintomasSeleccionados.includes("Golpes en baches")
+sintomasSeleccionados.includes("Ruido dirección")
 ){
 
 
 resultado +=
-"<h3>Posible problema suspensión/dirección</h3>"+
-"<p><b>Causas probables:</b><br>"+
-"- Amortiguadores desgastados.<br>"+
-"- Silentblocks dañados.<br>"+
-"- Rótulas con holgura.</p>"+
-"<p><b>Comprobación:</b><br>"+
-"Revisar holguras y elementos de suspensión.</p>";
+
+"<h3>⚙️ Suspensión y dirección</h3>"+
+"<p><b>Posibles causas:</b><br>"+
+"- Silentblocks.<br>"+
+"- Rótulas.<br>"+
+"- Amortiguadores.<br>"+
+"- Holguras.</p>";
 
 }
 
 
 
-else{
+
+// ELECTRICIDAD
+
+
+if(sintomasSeleccionados.includes("Testigo motor")){
 
 
 resultado +=
-"<h3>Análisis básico</h3>"+
-"<p>No hay suficientes datos para una identificación precisa.</p>"+
-"<p>Añade más síntomas o código DTC.</p>";
+
+"<h3>💻 Electricidad y electrónica</h3>"+
+"<p><b>Posibles causas:</b><br>"+
+"- Sensor defectuoso.<br>"+
+"- Sistema anticontaminación.<br>"+
+"- Fallo electrónico.</p>";
 
 }
 
 
 
+
+
+// DTC
 
 
 if(dtc){
 
 
 resultado +=
-"<h3>Código DTC detectado</h3>"+
+
+"<h3>🔍 Código DTC detectado</h3>"+
 "<p>"+dtc+"</p>";
+
 
 
 if(dtc.startsWith("P04")){
 
+
 resultado +=
-"<p>Relacionado habitualmente con sistemas de emisiones/EGR.</p>";
+
+"<p>Relacionado frecuentemente con emisiones/EGR.</p>";
 
 }
 
@@ -672,10 +751,27 @@ resultado +=
 
 
 
+// OTROS
+
+
+if(otros.trim()!=""){
+
 
 resultado +=
-"<h3>Nivel de urgencia</h3>"+
-"<p>Realizar comprobación antes de sustituir piezas.</p>";
+
+"<h3>📝 Información adicional</h3>"+
+"<p>"+otros+"</p>";
+
+}
+
+
+
+
+resultado +=
+
+"<h3>⚠️ Nivel de urgencia</h3>"+
+"<p>Realizar comprobaciones antes de sustituir componentes.</p>";
+
 
 
 
@@ -688,11 +784,4 @@ document.getElementById("resultado").style.display="block";
 }
 
 
-
 </script>
-
-
-
-</body>
-
-</html>
