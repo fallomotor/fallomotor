@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FALLOMOTOR | Diagnosis inteligente</title>
+<title>FALLOMOTOR V1.4</title>
 
 <style>
 
@@ -17,36 +17,45 @@ box-sizing:border-box;
 body{
 margin:0;
 font-family:Arial, sans-serif;
-background:#0f172a;
+background:#0b1120;
 color:white;
 }
 
 
 header{
+
 background:#020617;
-padding:30px 15px;
+padding:30px;
 text-align:center;
-border-bottom:2px solid #1e40af;
+border-bottom:3px solid #2563eb;
+
 }
 
 
 .logo{
+
 font-size:42px;
 font-weight:900;
 letter-spacing:4px;
+
 }
 
 
 .subtitle{
-margin-top:10px;
+
 color:#94a3b8;
+margin-top:10px;
+
 }
 
 
+
 .container{
+
 max-width:1000px;
 margin:auto;
 padding:20px;
+
 }
 
 
@@ -54,30 +63,31 @@ padding:20px;
 .card{
 
 background:#1e293b;
-border-radius:20px;
 padding:22px;
+border-radius:20px;
 margin-bottom:22px;
-box-shadow:0 8px 20px rgba(0,0,0,.25);
 
 }
 
 
 
 h2{
+
 margin-top:0;
-font-size:24px;
+
 }
 
 
-h3{
+
+.section-title{
 
 display:flex;
 align-items:center;
-gap:10px;
+gap:12px;
 background:#0f172a;
-padding:12px;
+padding:14px;
 border-radius:12px;
-font-size:18px;
+margin-top:25px;
 
 }
 
@@ -90,16 +100,17 @@ textarea{
 width:100%;
 padding:14px;
 margin:7px 0;
-border-radius:12px;
 border:0;
+border-radius:12px;
 font-size:16px;
 
 }
 
 
+
 textarea{
 
-min-height:110px;
+min-height:100px;
 
 }
 
@@ -111,17 +122,8 @@ display:inline-block;
 background:#334155;
 padding:12px 16px;
 margin:5px;
-border-radius:30px;
+border-radius:25px;
 cursor:pointer;
-transition:.2s;
-
-}
-
-
-
-.symptom:hover{
-
-background:#475569;
 
 }
 
@@ -140,12 +142,11 @@ button{
 width:100%;
 padding:18px;
 background:#2563eb;
-color:white;
 border:0;
-border-radius:14px;
+border-radius:15px;
+color:white;
 font-size:20px;
 font-weight:bold;
-cursor:pointer;
 
 }
 
@@ -159,24 +160,13 @@ background:#020617;
 }
 
 
-
-.report-line{
-
-background:#1e293b;
-padding:12px;
-border-radius:10px;
-margin:8px 0;
-
-}
-
-
 </style>
 
 </head>
 
 
-<body>
 
+<body>
 
 
 <header>
@@ -186,12 +176,10 @@ FALLOMOTOR
 </div>
 
 <div class="subtitle">
-Sistema inteligente de diagnóstico de vehículos
+Diagnóstico inteligente de averías
 </div>
 
-
 </header>
-
 
 
 
@@ -199,12 +187,10 @@ Sistema inteligente de diagnóstico de vehículos
 
 
 
-
-
 <div class="card">
 
 
-<h2>🚗 Datos del vehículo</h2>
+<h2>🚗 DATOS DEL VEHÍCULO</h2>
 
 
 <input placeholder="Marca">
@@ -220,7 +206,7 @@ Sistema inteligente de diagnóstico de vehículos
 
 <select>
 
-<option>Selecciona combustible</option>
+<option>Combustible</option>
 <option>Diésel</option>
 <option>Gasolina</option>
 <option>Híbrido</option>
@@ -230,11 +216,7 @@ Sistema inteligente de diagnóstico de vehículos
 </select>
 
 
-
 </div>
-
-
-
 
 
 
@@ -242,13 +224,13 @@ Sistema inteligente de diagnóstico de vehículos
 <div class="card">
 
 
-<h2>🔍 Diagnosis</h2>
+<h2>🔍 DATOS DE DIAGNOSIS</h2>
 
 
 <input placeholder="Código DTC (Ejemplo P0401)">
 
 
-<textarea placeholder="Describe el problema del vehículo"></textarea>
+<textarea placeholder="Describe el problema o síntomas principales"></textarea>
 
 
 </div>
@@ -256,16 +238,16 @@ Sistema inteligente de diagnóstico de vehículos
 
 
 
-
-
 <div class="card">
 
 
-<h2>⚠️ Selecciona síntomas</h2>
+<h2>⚠️ SELECCIONA SÍNTOMAS</h2>
 
 
 
-<h3>🔧 MOTOR</h3>
+<div class="section-title">
+🔧 MOTOR
+</div>
 
 
 <div class="symptom">Pérdida de potencia</div>
@@ -279,18 +261,22 @@ Sistema inteligente de diagnóstico de vehículos
 
 
 
-<h3>🛑 DISCO DE FRENO</h3>
+<div class="section-title">
+🛑 FRENOS
+</div>
 
 
 <div class="symptom">Ruido al frenar</div>
 <div class="symptom">Vibración al frenar</div>
 <div class="symptom">Pedal blando</div>
 <div class="symptom">Pérdida de frenada</div>
-<div class="symptom">Ruido en zona de rueda</div>
+<div class="symptom">Ruido zona rueda</div>
 
 
 
-<h3>⚙️ EJE DELANTERO</h3>
+<div class="section-title">
+⚙️ SUSPENSIÓN Y DIRECCIÓN
+</div>
 
 
 <div class="symptom">Ruido suspensión</div>
@@ -300,43 +286,62 @@ Sistema inteligente de diagnóstico de vehículos
 <div class="symptom">Ruido dirección</div>
 <div class="symptom">Holgura dirección</div>
 <div class="symptom">Crujidos al girar</div>
-<h3>🔩 TRANSMISIÓN</h3>
+<div class="section-title">
+🔩 TRANSMISIÓN
+</div>
+
 
 <div class="symptom">Embrague patina</div>
 <div class="symptom">Golpes al cambiar</div>
 <div class="symptom">Ruido caja cambios</div>
+<div class="symptom">Dificultad engranar marchas</div>
 
 
 
-<h3>💨 HUMOS Y EMISIONES</h3>
+<div class="section-title">
+💨 HUMOS Y EMISIONES
+</div>
+
 
 <div class="symptom">Humo negro</div>
 <div class="symptom">Humo blanco</div>
 <div class="symptom">Humo azul</div>
 <div class="symptom">Olor combustible</div>
+<div class="symptom">Humo excesivo</div>
 
 
 
-<h3>💻 MICROCHIP ELECTRÓNICO</h3>
+<div class="section-title">
+💻 ELECTRICIDAD Y ELECTRÓNICA
+</div>
+
 
 <div class="symptom">Testigo motor</div>
 <div class="symptom">Fallos eléctricos</div>
 <div class="symptom">Problemas batería</div>
 <div class="symptom">Fallo sensores</div>
+<div class="symptom">Problemas arranque</div>
 
 
 
-<h3>❄️ CLIMATIZACIÓN</h3>
+<div class="section-title">
+❄️ CLIMATIZACIÓN
+</div>
+
 
 <div class="symptom">No enfría</div>
 <div class="symptom">Mal olor</div>
 <div class="symptom">Ruido climatizador</div>
+<div class="symptom">No calienta</div>
 
 
 
-<h3>📝 OTROS</h3>
+<div class="section-title">
+📝 OTROS
+</div>
 
-<textarea placeholder="Escribe otro síntoma o detalle de la avería..."></textarea>
+
+<textarea placeholder="Escribe otro síntoma o detalle de la avería"></textarea>
 
 
 </div>
@@ -345,7 +350,9 @@ Sistema inteligente de diagnóstico de vehículos
 
 
 <button onclick="analizar()">
+
 ANALIZAR AVERÍA
+
 </button>
 
 
@@ -353,51 +360,69 @@ ANALIZAR AVERÍA
 
 <div id="resultado" class="card result">
 
-<h2>📋 Informe FALLOMOTOR</h2>
+
+<h2>📋 INFORME FALLOMOTOR</h2>
+
+
+<p>
+Resultado del análisis:
+</p>
+
 
 <div class="report-line">
-Vehículo analizado
+Vehículo:
 </div>
+
 
 <div class="report-line">
-Código DTC
+Código DTC:
 </div>
+
 
 <div class="report-line">
-Posibles causas
+Síntomas detectados:
 </div>
+
 
 <div class="report-line">
-Comprobaciones recomendadas
+Posibles causas:
 </div>
+
 
 <div class="report-line">
-Solución propuesta
+Comprobaciones recomendadas:
 </div>
 
 
+<div class="report-line">
+Solución propuesta:
+</div>
+
+
+<div class="report-line">
+Nivel de urgencia:
 </div>
 
 
 
-
 </div>
 
+
+
+</div>
 
 
 
 <script>
 
 
-document.querySelectorAll(".symptom").forEach(boton=>{
+document.querySelectorAll(".symptom").forEach(item=>{
 
-
-boton.onclick=function(){
+item.onclick=function(){
 
 this.classList.toggle("active");
 
 }
-
 
 });
 
