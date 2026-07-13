@@ -1,169 +1,326 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>FALLOMOTOR - Diagnóstico inteligente</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #101820;
-    color: white;
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0b1220;
+    color:white;
 }
 
-header {
-    text-align: center;
-    padding: 30px 15px;
-    background: linear-gradient(135deg,#0d6efd,#00c6ff);
-}
-
-.logo {
-    font-size: 45px;
-    font-weight: bold;
-    letter-spacing: 3px;
-}
-
-.car {
-    font-size: 55px;
-}
-
-.subtitle {
-    font-size: 18px;
-}
-
-.container {
-    max-width: 600px;
-    margin: 25px auto;
-    background: white;
-    color: #222;
-    padding: 25px;
-    border-radius: 15px;
-}
-
-input, textarea, select {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-button {
-    width: 100%;
-    padding: 15px;
-    background: #0d6efd;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #084298;
-}
-
-.resultado {
-    margin-top: 20px;
-    padding: 15px;
-    background: #e9f5ff;
-    border-radius: 10px;
-    display: none;
-}
-
-footer {
+header{
     text-align:center;
-    padding:20px;
-    font-size:14px;
-    color:#aaa;
+    padding:30px 15px;
+    background:#111827;
 }
+
+.logo{
+    font-size:38px;
+    font-weight:900;
+    letter-spacing:3px;
+}
+
+.subtitle{
+    color:#94a3b8;
+    margin-top:10px;
+}
+
+.container{
+    max-width:950px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:#1e293b;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+h2{
+    margin-top:0;
+}
+
+h3{
+    margin-top:25px;
+    border-bottom:1px solid #475569;
+    padding-bottom:8px;
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+    box-sizing:border-box;
+    padding:13px;
+    margin:7px 0;
+    border-radius:10px;
+    border:none;
+    font-size:15px;
+
+}
+
+textarea{
+    min-height:100px;
+}
+
+
+.symptom{
+
+    display:inline-block;
+    background:#334155;
+    padding:10px 15px;
+    margin:5px;
+    border-radius:25px;
+    cursor:pointer;
+    transition:.2s;
+
+}
+
+
+.symptom.active{
+
+    background:#2563eb;
+
+}
+
+
+button{
+
+    width:100%;
+    padding:16px;
+    border:0;
+    border-radius:12px;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+
+}
+
+
+.result{
+
+    display:none;
+
+}
+
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <header>
-<div class="car">🚗⚙️</div>
-<div class="logo">FALLOMOTOR</div>
-<div class="subtitle">
-Detecta averías de tu vehículo con ayuda inteligente
+
+<div class="logo">
+FALLOMOTOR
 </div>
+
+<div class="subtitle">
+Diagnóstico inteligente de averías
+</div>
+
 </header>
+
 
 
 <div class="container">
 
-<h2>Consulta tu avería</h2>
-
-<label>Marca del vehículo</label>
-<input id="marca" placeholder="Ej: BMW, Seat, Ford">
-
-<label>Modelo</label>
-<input id="modelo" placeholder="Ej: León, Golf, Focus">
-
-<label>Año</label>
-<input id="anio" placeholder="Ej: 2018">
-
-<label>Motor</label>
-<input id="motor" placeholder="Ej: 2.0 TDI">
-
-<label>Kilómetros</label>
-<input id="km" placeholder="Ej: 150000">
-
-<label>Código OBD (opcional)</label>
-<input id="obd" placeholder="Ej: P0301">
-
-<label>Síntomas</label>
-<textarea id="sintomas" rows="5" placeholder="Describe el problema: ruidos, humo, pérdida de potencia..."></textarea>
 
 
-<button onclick="diagnosticar()">
-🔍 Analizar avería
-</button>
+<div class="card">
+
+<h2>🚗 Datos del vehículo</h2>
 
 
-<div class="resultado" id="resultado"></div>
+<input placeholder="Marca">
+
+<input placeholder="Modelo">
+
+<input placeholder="Año">
+
+<input placeholder="Código motor">
+
+<input placeholder="Cilindrada">
+
+
+<select>
+
+<option>Combustible</option>
+<option>Diésel</option>
+<option>Gasolina</option>
+<option>Híbrido</option>
+<option>Eléctrico</option>
+<option>GLP</option>
+
+</select>
+
 
 </div>
 
 
-<footer>
-FALLOMOTOR © 2026 - Diagnóstico inteligente de vehículos
-</footer>
+
+
+<div class="card">
+
+
+<h2>🔍 Diagnosis</h2>
+
+
+<input placeholder="Código DTC (Ejemplo P0401)">
+
+
+<textarea placeholder="Describe el problema"></textarea>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+
+<h2>Selecciona síntomas</h2>
+
+
+<h3>🔧 MOTOR</h3>
+
+
+<div class="symptom">Pérdida de potencia</div>
+<div class="symptom">Tirones</div>
+<div class="symptom">No arranca</div>
+<div class="symptom">Ralentí inestable</div>
+<div class="symptom">Ruido metálico</div>
+<div class="symptom">Ruido de motor</div>
+<div class="symptom">Consumo elevado</div>
+<div class="symptom">Pérdida de aceite</div>
+
+
+<h3>🛑 FRENOS</h3>
+
+
+<div class="symptom">Ruido al frenar</div>
+<div class="symptom">Vibración al frenar</div>
+<div class="symptom">Pedal blando</div>
+<div class="symptom">Pérdida de frenada</div>
+<div class="symptom">Ruido en zona de rueda</div>
+
+
+<h3>⚙️ SUSPENSIÓN Y DIRECCIÓN</h3>
+
+
+<div class="symptom">Ruido suspensión</div>
+<div class="symptom">Golpes en baches</div>
+<div class="symptom">Vibración volante</div>
+<div class="symptom">Dirección dura</div>
+<div class="symptom">Ruido dirección</div>
+<div class="symptom">Holgura dirección</div>
+<div class="symptom">Crujidos al girar</div>
+<h3>🔩 TRANSMISIÓN</h3>
+
+<div class="symptom">Embrague patina</div>
+<div class="symptom">Golpes al cambiar</div>
+<div class="symptom">Ruido caja cambios</div>
+
+
+<h3>💨 HUMOS Y EMISIONES</h3>
+
+<div class="symptom">Humo negro</div>
+<div class="symptom">Humo blanco</div>
+<div class="symptom">Humo azul</div>
+<div class="symptom">Olor combustible</div>
+
+
+<h3>💻 ELECTRICIDAD Y ELECTRÓNICA</h3>
+
+<div class="symptom">Testigo motor</div>
+<div class="symptom">Fallos eléctricos</div>
+<div class="symptom">Problemas batería</div>
+<div class="symptom">Fallo sensores</div>
+
+
+<h3>❄️ CLIMATIZACIÓN</h3>
+
+<div class="symptom">No enfría</div>
+<div class="symptom">Mal olor</div>
+<div class="symptom">Ruido climatizador</div>
+
+
+<h3>📝 OTROS</h3>
+
+<textarea placeholder="Escribe otro síntoma o detalle de la avería..."></textarea>
+
+
+</div>
+
+
+
+<button onclick="analizar()">
+ANALIZAR AVERÍA
+</button>
+
+
+
+<div id="resultado" class="card result">
+
+<h2>Informe FALLOMOTOR</h2>
+
+<p>
+Aquí aparecerá el diagnóstico, causas probables,
+comprobaciones y soluciones.
+</p>
+
+</div>
+
+
+
+</div>
+
 
 
 <script>
 
-function diagnosticar(){
 
-let sintomas = document.getElementById("sintomas").value;
+document.querySelectorAll(".symptom").forEach(boton=>{
 
-let resultado = document.getElementById("resultado");
+    boton.onclick=function(){
 
-resultado.style.display="block";
+        this.classList.toggle("active");
 
-resultado.innerHTML = `
-<h3>Resultado del diagnóstico</h3>
+    }
 
-<p><b>Posibles causas:</b></p>
-<ul>
-<li>Revisar sistema de admisión o combustible.</li>
-<li>Comprobar sensores relacionados con el fallo.</li>
-<li>Realizar lectura de códigos OBD profesionales.</li>
-</ul>
+});
 
-<p><b>Gravedad:</b> Pendiente de análisis avanzado.</p>
 
-<p><b>Próxima mejora:</b> Conectar inteligencia artificial para analizar todos los datos del vehículo.</p>
 
-`;
+function analizar(){
+
+    document.getElementById("resultado").style.display="block";
 
 }
 
+
 </script>
 
+
+
 </body>
+
 </html>
