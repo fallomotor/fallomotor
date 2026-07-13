@@ -6,114 +6,166 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FALLOMOTOR - Diagnóstico inteligente</title>
+<title>FALLOMOTOR | Diagnosis inteligente</title>
 
 <style>
 
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#0b1220;
-    color:white;
+*{
+box-sizing:border-box;
 }
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#0f172a;
+color:white;
+}
+
 
 header{
-    text-align:center;
-    padding:30px 15px;
-    background:#111827;
+background:#020617;
+padding:30px 15px;
+text-align:center;
+border-bottom:2px solid #1e40af;
 }
+
 
 .logo{
-    font-size:38px;
-    font-weight:900;
-    letter-spacing:3px;
+font-size:42px;
+font-weight:900;
+letter-spacing:4px;
 }
+
 
 .subtitle{
-    color:#94a3b8;
-    margin-top:10px;
+margin-top:10px;
+color:#94a3b8;
 }
+
 
 .container{
-    max-width:950px;
-    margin:auto;
-    padding:20px;
+max-width:1000px;
+margin:auto;
+padding:20px;
 }
+
+
 
 .card{
-    background:#1e293b;
-    border-radius:18px;
-    padding:20px;
-    margin-bottom:20px;
+
+background:#1e293b;
+border-radius:20px;
+padding:22px;
+margin-bottom:22px;
+box-shadow:0 8px 20px rgba(0,0,0,.25);
+
 }
+
+
 
 h2{
-    margin-top:0;
+margin-top:0;
+font-size:24px;
 }
 
+
 h3{
-    margin-top:25px;
-    border-bottom:1px solid #475569;
-    padding-bottom:8px;
+
+display:flex;
+align-items:center;
+gap:10px;
+background:#0f172a;
+padding:12px;
+border-radius:12px;
+font-size:18px;
+
 }
+
+
 
 input,
 select,
 textarea{
 
-    width:100%;
-    box-sizing:border-box;
-    padding:13px;
-    margin:7px 0;
-    border-radius:10px;
-    border:none;
-    font-size:15px;
+width:100%;
+padding:14px;
+margin:7px 0;
+border-radius:12px;
+border:0;
+font-size:16px;
 
 }
+
 
 textarea{
-    min-height:100px;
+
+min-height:110px;
+
 }
+
 
 
 .symptom{
 
-    display:inline-block;
-    background:#334155;
-    padding:10px 15px;
-    margin:5px;
-    border-radius:25px;
-    cursor:pointer;
-    transition:.2s;
+display:inline-block;
+background:#334155;
+padding:12px 16px;
+margin:5px;
+border-radius:30px;
+cursor:pointer;
+transition:.2s;
 
 }
+
+
+
+.symptom:hover{
+
+background:#475569;
+
+}
+
 
 
 .symptom.active{
 
-    background:#2563eb;
+background:#2563eb;
 
 }
+
 
 
 button{
 
-    width:100%;
-    padding:16px;
-    border:0;
-    border-radius:12px;
-    background:#2563eb;
-    color:white;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
+width:100%;
+padding:18px;
+background:#2563eb;
+color:white;
+border:0;
+border-radius:14px;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;
 
 }
 
 
+
 .result{
 
-    display:none;
+display:none;
+background:#020617;
+
+}
+
+
+
+.report-line{
+
+background:#1e293b;
+padding:12px;
+border-radius:10px;
+margin:8px 0;
 
 }
 
@@ -126,6 +178,7 @@ button{
 <body>
 
 
+
 <header>
 
 <div class="logo">
@@ -133,10 +186,12 @@ FALLOMOTOR
 </div>
 
 <div class="subtitle">
-Diagnóstico inteligente de averías
+Sistema inteligente de diagnóstico de vehículos
 </div>
 
+
 </header>
+
 
 
 
@@ -144,7 +199,10 @@ Diagnóstico inteligente de averías
 
 
 
+
+
 <div class="card">
+
 
 <h2>🚗 Datos del vehículo</h2>
 
@@ -162,7 +220,7 @@ Diagnóstico inteligente de averías
 
 <select>
 
-<option>Combustible</option>
+<option>Selecciona combustible</option>
 <option>Diésel</option>
 <option>Gasolina</option>
 <option>Híbrido</option>
@@ -172,7 +230,11 @@ Diagnóstico inteligente de averías
 </select>
 
 
+
 </div>
+
+
+
 
 
 
@@ -186,7 +248,7 @@ Diagnóstico inteligente de averías
 <input placeholder="Código DTC (Ejemplo P0401)">
 
 
-<textarea placeholder="Describe el problema"></textarea>
+<textarea placeholder="Describe el problema del vehículo"></textarea>
 
 
 </div>
@@ -194,10 +256,13 @@ Diagnóstico inteligente de averías
 
 
 
+
+
 <div class="card">
 
 
-<h2>Selecciona síntomas</h2>
+<h2>⚠️ Selecciona síntomas</h2>
+
 
 
 <h3>🔧 MOTOR</h3>
@@ -213,7 +278,8 @@ Diagnóstico inteligente de averías
 <div class="symptom">Pérdida de aceite</div>
 
 
-<h3>🛑 FRENOS</h3>
+
+<h3>🛑 DISCO DE FRENO</h3>
 
 
 <div class="symptom">Ruido al frenar</div>
@@ -223,7 +289,8 @@ Diagnóstico inteligente de averías
 <div class="symptom">Ruido en zona de rueda</div>
 
 
-<h3>⚙️ SUSPENSIÓN Y DIRECCIÓN</h3>
+
+<h3>⚙️ EJE DELANTERO</h3>
 
 
 <div class="symptom">Ruido suspensión</div>
@@ -240,6 +307,7 @@ Diagnóstico inteligente de averías
 <div class="symptom">Ruido caja cambios</div>
 
 
+
 <h3>💨 HUMOS Y EMISIONES</h3>
 
 <div class="symptom">Humo negro</div>
@@ -248,7 +316,8 @@ Diagnóstico inteligente de averías
 <div class="symptom">Olor combustible</div>
 
 
-<h3>💻 ELECTRICIDAD Y ELECTRÓNICA</h3>
+
+<h3>💻 MICROCHIP ELECTRÓNICO</h3>
 
 <div class="symptom">Testigo motor</div>
 <div class="symptom">Fallos eléctricos</div>
@@ -256,11 +325,13 @@ Diagnóstico inteligente de averías
 <div class="symptom">Fallo sensores</div>
 
 
+
 <h3>❄️ CLIMATIZACIÓN</h3>
 
 <div class="symptom">No enfría</div>
 <div class="symptom">Mal olor</div>
 <div class="symptom">Ruido climatizador</div>
+
 
 
 <h3>📝 OTROS</h3>
@@ -272,26 +343,46 @@ Diagnóstico inteligente de averías
 
 
 
+
 <button onclick="analizar()">
 ANALIZAR AVERÍA
 </button>
 
 
 
+
 <div id="resultado" class="card result">
 
-<h2>Informe FALLOMOTOR</h2>
+<h2>📋 Informe FALLOMOTOR</h2>
 
-<p>
-Aquí aparecerá el diagnóstico, causas probables,
-comprobaciones y soluciones.
-</p>
+<div class="report-line">
+Vehículo analizado
+</div>
+
+<div class="report-line">
+Código DTC
+</div>
+
+<div class="report-line">
+Posibles causas
+</div>
+
+<div class="report-line">
+Comprobaciones recomendadas
+</div>
+
+<div class="report-line">
+Solución propuesta
+</div>
+
 
 </div>
 
 
 
+
 </div>
+
 
 
 
@@ -300,11 +391,13 @@ comprobaciones y soluciones.
 
 document.querySelectorAll(".symptom").forEach(boton=>{
 
-    boton.onclick=function(){
 
-        this.classList.toggle("active");
+boton.onclick=function(){
 
-    }
+this.classList.toggle("active");
+
+}
+
 
 });
 
@@ -312,9 +405,10 @@ document.querySelectorAll(".symptom").forEach(boton=>{
 
 function analizar(){
 
-    document.getElementById("resultado").style.display="block";
+document.getElementById("resultado").style.display="block";
 
 }
+
 
 
 </script>
