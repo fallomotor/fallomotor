@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FALLOMOTOR - Diagnóstico inteligente</title>
+<title>FALLOMOTOR | Diagnóstico inteligente de averías</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -12,75 +12,86 @@
 
 <body>
 
-<header>
-    <div class="logo">
-        🚗
+<header class="hero">
+
+    <div class="logo-area">
+        <div class="car-icon">🚗</div>
         <h1>FALLOMOTOR</h1>
     </div>
 
-    <p>Diagnóstico inteligente de averías del automóvil</p>
+    <p>
+        Diagnóstico inteligente de averías con IA
+    </p>
+
 </header>
 
 
-<section class="vehiculo">
+<main>
+
+
+<section class="card">
 
 <h2>🚘 Datos del vehículo</h2>
 
-<div class="campos">
+<div class="grid">
 
-<input type="text" id="marca" placeholder="Marca">
-<input type="text" id="modelo" placeholder="Modelo">
 
-<input type="number" id="anio" placeholder="Año">
+<div class="input-box">
+<label>Marca</label>
+<select id="marca">
+<option value="">Seleccionar</option>
+<option>Ford</option>
+<option>Volkswagen</option>
+<option>BMW</option>
+<option>Seat</option>
+<option>Renault</option>
+<option>Peugeot</option>
+<option>Opel</option>
+<option>Otro</option>
+</select>
+</div>
 
-<input type="text" id="motor" placeholder="Código motor">
 
-<input type="text" id="cilindrada" placeholder="Cilindrada">
+<div class="input-box">
+<label>Modelo</label>
+<input id="modelo" type="text" placeholder="Ej: Focus">
+</div>
 
+
+<div class="input-box">
+<label>Año</label>
+<input id="anio" type="number" placeholder="Ej: 2018">
+</div>
+
+
+<div class="input-box">
+<label>Código motor</label>
+<input id="motor" type="text" placeholder="Ej: DW10">
+</div>
+
+
+<div class="input-box">
+<label>Cilindrada</label>
+<input id="cilindrada" type="text" placeholder="Ej: 2.0 TDCi">
+</div>
+
+
+<div class="input-box">
+<label>Combustible</label>
 <select id="combustible">
-<option value="">Combustible</option>
-<option>Diésel</option>
+<option value="">Seleccionar</option>
 <option>Gasolina</option>
+<option>Diésel</option>
 <option>Híbrido</option>
 <option>Eléctrico</option>
 </select>
-
 </div>
 
-</section>
 
-
-
-<section class="sistemas">
-
-<h2>🔧 Selecciona el sistema con problemas</h2>
-
-
-<div class="botones">
-
-<button onclick="seleccionarSistema('Motor')">
-⚙️ Motor
-</button>
-
-
-<button onclick="seleccionarSistema('Frenos')">
-🛑 Frenos
-</button>
-
-
-<button onclick="seleccionarSistema('Suspensión')">
-🚘 Suspensión
-</button>
-
-
-<button onclick="seleccionarSistema('Electricidad')">
-⚡ Electricidad y electrónica
-</button>
-
-
-<button onclick="seleccionarSistema('Climatización')">
-❄️ Climatización
-</button>
+<div class="input-box">
+<label>DTC / Código de avería</label>
+<input id="dtc" type="text" placeholder="Ej: P0401">
+</div>
 
 
 </div>
@@ -89,87 +100,189 @@
 
 
 
+<section class="card">
 
-<section class="sintomas">
+<h2>🔧 Selección de avería</h2>
 
-<h2>⚠️ Síntomas</h2>
+<p class="info">
+Selecciona todos los síntomas posibles para aumentar la precisión del diagnóstico.
+</p>
 
 
-<div class="botones">
+<div class="symptoms">
 
-<button onclick="seleccionarSintoma('Humo blanco')">
-💨 Humo blanco
+
+<button class="symptom" data-value="motor">
+⚙️<br>
+Motor
 </button>
 
 
-<button onclick="seleccionarSintoma('Ruido motor')">
-🔊 Ruido motor
+<button class="symptom" data-value="frenos">
+🛑<br>
+Frenos
 </button>
 
 
-<button onclick="seleccionarSintoma('Ruido suspensión')">
-🚗 Ruido suspensión
+<button class="symptom" data-value="suspension">
+🛞<br>
+Suspensión
 </button>
 
 
-<button onclick="seleccionarSintoma('Ruido frenos')">
-🛑 Ruido frenos
+<button class="symptom" data-value="electricidad">
+⚡<br>
+Electricidad y electrónica
 </button>
 
 
-<button onclick="seleccionarSintoma('Ruido dirección')">
-🔄 Ruido dirección
+<button class="symptom" data-value="climatizacion">
+❄️<br>
+Climatización
+</button>
+
+
+<button class="symptom" data-value="ruidos">
+🔊<br>
+Ruidos y vibraciones
 </button>
 
 
 </div>
 
 
-<textarea id="otros" placeholder="OTROS síntomas..."></textarea>
+<textarea id="otros" placeholder="Otros síntomas..."></textarea>
 
 
 </section>
+<!-- CONTINUACIÓN FALLOMOTOR 2.0 -->
 
 
+<section class="card analysis-card">
+
+<h2>🤖 Diagnóstico inteligente</h2>
+
+<p class="info">
+Cuantos más datos introduzcas, mayor será la precisión del análisis.
+</p>
 
 
-<button class="analizar" onclick="analizarAveria()">
-
-🔍 ANALIZAR AVERÍA
-
+<button id="analyzeBtn" class="main-button">
+🔍 Analizar avería
 </button>
 
 
+<div id="loading" class="loading hidden">
+
+Analizando datos del vehículo...
+
+</div>
 
 
-<section class="resultado">
-
-<h2>📊 Resultado del diagnóstico</h2>
+<div id="result" class="result hidden">
 
 
-<div id="resultado">
+<h3>📊 Resultado del diagnóstico</h3>
 
-Esperando datos del vehículo...
+
+<div class="diagnostic-grid">
+
+
+<div class="diagnostic-box">
+<span>Datos analizados</span>
+<strong id="dataCount">0</strong>
+</div>
+
+
+<div class="diagnostic-box">
+<span>Precisión estimada</span>
+<strong id="precision">Baja</strong>
+</div>
+
+
+<div class="diagnostic-box">
+<span>Nivel de urgencia</span>
+<strong id="urgency">Pendiente</strong>
+</div>
+
+
+</div>
+
+
+
+<div class="result-section">
+
+<h4>⚠️ Posibles causas</h4>
+
+<ul id="causes">
+
+<li>Realiza un análisis para obtener resultados.</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="result-section">
+
+<h4>🔧 Comprobaciones recomendadas</h4>
+
+<ul id="checks">
+
+<li>Comprueba los elementos relacionados antes de sustituir piezas.</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="warning">
+
+⚠️ El diagnóstico es una ayuda orientativa.
+Antes de sustituir componentes se recomienda realizar comprobaciones.
+
+</div>
+
 
 </div>
 
 
 </section>
+
+
+
+</main>
 
 
 
 <footer>
 
-<p>FALLOMOTOR © 2026</p>
-
-<p>Diagnóstico orientativo. Realizar comprobaciones antes de sustituir componentes.</p>
+<p>
+© 2026 FALLOMOTOR - Diagnóstico de averías asistido
+</p>
 
 </footer>
 
 
-
 <script src="script.js"></script>
 
+
+</body>
+</html>
+<!-- FALLOMOTOR 2.0 - FINAL DEL INDEX -->
+
+<footer>
+
+<p>
+© 2026 FALLOMOTOR - Diagnóstico de averías asistido por IA
+</p>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
