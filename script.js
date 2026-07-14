@@ -1,230 +1,265 @@
-let sistemaSeleccionado = "";
-let sintomaSeleccionado = "";
+const symptoms = document.querySelectorAll(".symptom");
+
+let selectedSymptoms = [];
 
 
-// Selección de sistema
+// Selección de síntomas
 
-function seleccionarSistema(sistema){
+symptoms.forEach(button => {
 
-    sistemaSeleccionado = sistema;
+    button.addEventListener("click", () => {
 
-    document.querySelectorAll(".sistemas button")
-    .forEach(boton => boton.classList.remove("activo"));
+        button.classList.toggle("active");
 
-    event.target.classList.add("activo");
+        const value = button.dataset.value;
+
+
+        if(selectedSymptoms.includes(value)){
+
+            selectedSymptoms = selectedSymptoms.filter(item => item !== value);
+
+        } else {
+
+            selectedSymptoms.push(value);
+
+        }
+
+    });
+
+});
+
+
+
+// Botón analizar
+
+document.getElementById("analyzeBtn").addEventListener("click", () => {
+
+
+const loading = document.getElementById("loading");
+const result = document.getElementById("result");
+
+
+loading.classList.remove("hidden");
+result.classList.add("hidden");
+
+
+
+setTimeout(()=>{
+
+
+loading.classList.add("hidden");
+result.classList.remove("hidden");
+
+
+
+let datos = 0;
+
+
+// Contar datos del vehículo
+
+const fields = [
+"marca",
+"modelo",
+"anio",
+"motor",
+"cilindrada",
+"combustible",
+"dtc"
+];
+
+
+fields.forEach(id=>{
+
+if(document.getElementById(id).value){
+
+datos++;
+
+}
+
+});
+
+
+// Añadir síntomas
+
+datos += selectedSymptoms.length;
+
+
+
+if(document.getElementById("otros").value){
+
+datos++;
 
 }
 
 
 
-// Selección de síntoma
+document.getElementById("dataCount").innerHTML = datos;
 
-function seleccionarSintoma(sintoma){
 
-    sintomaSeleccionado = sintoma;
 
-    document.querySelectorAll(".sintomas button")
-    .forEach(boton => boton.classList.remove("activo"));
+// Precisión
 
-    event.target.classList.add("activo");
+let precision="Baja";
+
+
+if(datos >= 8){
+
+precision="Alta";
+
+}
+
+else if(datos >=4){
+
+precision="Media";
+
+}
+
+
+document.getElementById("precision").innerHTML = precision;
+
+
+
+// Urgencia
+
+let urgency="Media";
+
+
+if(selectedSymptoms.includes("motor")){
+
+urgency="Revisar pronto";
+
+}
+
+if(selectedSymptoms.includes("frenos")){
+
+urgency="Alta";
+
+}
+
+
+document.getElementById("urgency").innerHTML = urgency;
+
+
+
+
+// Diagnóstico básico
+
+let causes = [];
+let checks = [];
+
+
+
+if(selectedSymptoms.includes("motor")){
+
+causes.push(
+"Posible problema relacionado con combustión, inyección, lubricación o componentes internos del motor."
+);
+
+checks.push(
+"Comprobar niveles, ruidos, valores de diagnosis y funcionamiento del sistema de inyección."
+);
+
+}
+
+
+
+if(selectedSymptoms.includes("frenos")){
+
+causes.push(
+"Posible desgaste o fallo en componentes del sistema de frenado."
+);
+
+checks.push(
+"Revisar pastillas, discos, líquido de frenos y posibles fugas."
+);
+
+}
+
+
+
+if(selectedSymptoms.includes("suspension")){
+
+causes.push(
+"Posible desgaste en amortiguadores, silentblocks o elementos de suspensión."
+);
+
+checks.push(
+"Realizar inspección visual y comprobar holguras."
+);
+
+}
+
+
+
+if(selectedSymptoms.includes("electricidad")){
+
+causes.push(
+"Posible fallo eléctrico, sensor o comunicación electrónica."
+);
+
+checks.push(
+"Leer códigos DTC y comprobar alimentación eléctrica."
+);
+
+}
+
+
+
+if(selectedSymptoms.includes("climatizacion")){
+
+causes.push(
+"Posible problema en circuito de climatización."
+);
+
+checks.push(
+"Comprobar presión del circuito y funcionamiento del compresor."
+);
+
+}
+
+
+
+if(selectedSymptoms.includes("ruidos")){
+
+causes.push(
+"Ruido procedente de algún componente mecánico que requiere localización."
+);
+
+checks.push(
+"Identificar zona exacta del ruido y comprobar piezas relacionadas."
+);
+
+}
+
+
+
+if(causes.length===0){
+
+causes.push(
+"Selecciona más síntomas para obtener un diagnóstico más preciso."
+);
+
+checks.push(
+"Aporta más información del vehículo y las condiciones del fallo."
+);
 
 }
 
 
 
 
-// Diagnóstico
+document.getElementById("causes").innerHTML =
+causes.map(item=>`<li>${item}</li>`).join("");
 
-function analizarAveria(){
 
 
-let marca = document.getElementById("marca").value;
-let modelo = document.getElementById("modelo").value;
-let anio = document.getElementById("anio").value;
-let motor = document.getElementById("motor").value;
-let cilindrada = document.getElementById("cilindrada").value;
-let combustible = document.getElementById("combustible").value;
+document.getElementById("checks").innerHTML =
+checks.map(item=>`<li>${item}</li>`).join("");
 
-let otros = document.getElementById("otros").value;
 
 
+},1500);
 
-let resultado = document.getElementById("resultado");
 
 
-
-if(marca=="" || modelo==""){
-
-resultado.innerHTML =
-"⚠️ Introduce al menos marca y modelo del vehículo.";
-
-return;
-
-}
-
-
-
-let precision = 30;
-
-let causas = "";
-
-
-
-if(sistemaSeleccionado=="Motor"){
-
-precision +=20;
-
-causas += `
-<h3>⚙️ Posibles causas de motor</h3>
-
-<ul>
-
-<li>Desgaste interno del motor</li>
-
-<li>Problemas de inyección</li>
-
-<li>Falta de presión o lubricación</li>
-
-<li>Componentes mecánicos con holgura</li>
-
-</ul>
-
-`;
-
-}
-
-
-
-if(sintomaSeleccionado=="Ruido motor"){
-
-precision +=15;
-
-causas +=`
-
-<h3>🔊 Ruido motor detectado</h3>
-
-<ul>
-
-<li>Revisar distribución</li>
-
-<li>Comprobar inyectores</li>
-
-<li>Revisar taqués o elementos móviles</li>
-
-<li>Comprobar presión de aceite</li>
-
-</ul>
-
-`;
-
-}
-
-
-
-if(sintomaSeleccionado=="Humo blanco"){
-
-precision +=15;
-
-causas +=`
-
-<h3>💨 Humo blanco</h3>
-
-<ul>
-
-<li>Posible entrada de refrigerante</li>
-
-<li>Problema de combustión</li>
-
-<li>Revisar junta de culata</li>
-
-</ul>
-
-`;
-
-}
-
-
-
-if(sintomaSeleccionado=="Ruido frenos"){
-
-precision +=15;
-
-causas +=`
-
-<h3>🛑 Frenos</h3>
-
-<ul>
-
-<li>Pastillas desgastadas</li>
-
-<li>Discos dañados</li>
-
-<li>Elementos de frenado con holgura</li>
-
-</ul>
-
-`;
-
-}
-
-
-
-if(causas==""){
-
-causas=`
-
-<h3>🔍 Diagnóstico inicial</h3>
-
-<p>
-Se necesitan más datos para aumentar la precisión.
-Selecciona sistema y síntomas.
-</p>
-
-`;
-
-}
-
-
-
-resultado.innerHTML = `
-
-<h3>🚗 Vehículo analizado</h3>
-
-<p>
-<strong>${marca} ${modelo}</strong><br>
-
-Año: ${anio || "No indicado"}<br>
-
-Motor: ${motor || "No indicado"}<br>
-
-Cilindrada: ${cilindrada || "No indicada"}<br>
-
-Combustible: ${combustible || "No indicado"}
-
-</p>
-
-
-<hr>
-
-
-${causas}
-
-
-<h3>📊 Precisión del diagnóstico</h3>
-
-<p>
-Datos analizados: ${precision/10}
-<br>
-Nivel de precisión: ${precision}% 
-</p>
-
-
-<h3>⚠️ Nivel de urgencia</h3>
-
-<p>
-Realizar comprobaciones antes de sustituir componentes.
-</p>
-
-`;
-
-}
+});
