@@ -1,0 +1,220 @@
+*{
+    box-sizing:border-box;
+    font-family:"Segoe UI", Arial, sans-serif;
+}
+
+
+body{
+
+    margin:0;
+    background:#f2f4f7;
+    color:#1d1d1d;
+
+}
+
+
+/* CABECERA */
+
+header{
+
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+
+}
+
+
+.logo{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+
+}
+
+
+.logo h1{
+
+    font-size:38px;
+    letter-spacing:2px;
+    margin:0;
+    font-weight:800;
+
+}
+
+
+.logo:first-letter{
+
+    color:#e30613;
+
+}
+
+
+header p{
+
+    margin-top:10px;
+    font-size:17px;
+
+}
+
+
+
+/* SECCIONES */
+
+section{
+
+    background:white;
+    margin:20px auto;
+    padding:20px;
+    width:95%;
+    max-width:900px;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+
+h2{
+
+    text-align:center;
+    color:#111827;
+
+}
+
+
+
+/* CAMPOS VEHÍCULO */
+
+.campos{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:12px;
+
+}
+
+
+input, select, textarea{
+
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:16px;
+
+}
+
+
+textarea{
+
+    margin-top:15px;
+    min-height:100px;
+}
+
+
+
+/* BOTONES */
+
+.botones{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px;
+
+}
+
+
+button{
+
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    background:#e5e7eb;
+    transition:0.3s;
+
+}
+
+
+button:hover{
+
+    transform:scale(1.03);
+
+}
+
+
+button.activo{
+
+    background:#e30613;
+    color:white;
+
+}
+
+
+
+/* BOTÓN ANALIZAR */
+
+.analizar{
+
+    display:block;
+    margin:30px auto;
+    background:#e30613;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    width:90%;
+    max-width:500px;
+
+}
+
+
+
+/* RESULTADO */
+
+#resultado{
+
+    background:#f9fafb;
+    padding:20px;
+    border-radius:12px;
+    min-height:120px;
+    line-height:1.6;
+
+}
+
+
+
+/* PIE */
+
+footer{
+
+    text-align:center;
+    padding:20px;
+    color:#555;
+    font-size:14px;
+
+}
+
+
+
+/* MÓVIL */
+
+@media(max-width:600px){
+
+.logo h1{
+
+    font-size:28px;
+
+}
+
+
+section{
+
+    margin:12px auto;
+    width:94%;
+
+}
+
+}
