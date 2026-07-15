@@ -1,288 +1,380 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FALLOMOTOR | Diagnóstico inteligente de averías</title>
+    <title>FALLOMOTOR - Diagnóstico Inteligente</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<header class="hero">
+<header class="header">
 
-    <div class="logo-area">
-        <div class="car-icon">🚗</div>
-        <h1>FALLOMOTOR</h1>
-    </div>
+<div class="logo">
 
-    <p>
-        Diagnóstico inteligente de averías con IA
-    </p>
+<img src="logo.png" alt="FALLOMOTOR">
+
+</div>
+
+<nav>
+
+<a href="#">Inicio</a>
+
+<a href="#">Diagnóstico</a>
+
+<a href="#">Historial</a>
+
+<a href="#">Contacto</a>
+
+</nav>
 
 </header>
 
+<section class="hero">
 
-<main>
+<div class="hero-overlay">
 
+<h1>TU COCHE ESTÁ INTENTANDO DECIRTE ALGO</h1>
 
-<section class="card">
+<p>
 
-<h2>🚘 Datos del vehículo</h2>
+Un ruido nuevo, una luz encendida o una pérdida de potencia pueden ser el primer aviso de una avería.
+
+La Inteligencia Artificial analiza la información y genera un primer diagnóstico orientativo.
+
+</p>
+
+<a href="#diagnostico" class="btnPrincipal">
+
+ANALIZAR AVERÍA
+
+</a>
+
+</div>
+
+</section>
+
+<section id="diagnostico" class="contenedor">
+
+<h2>Datos del vehículo</h2>
 
 <div class="grid">
 
+<div class="campo">
 
-<div class="input-box">
 <label>Marca</label>
-<select id="marca">
-<option value="">Seleccionar</option>
-<option>Ford</option>
-<option>Volkswagen</option>
-<option>BMW</option>
-<option>Seat</option>
-<option>Renault</option>
-<option>Peugeot</option>
-<option>Opel</option>
-<option>Otro</option>
-</select>
+
+<input type="text" placeholder="Ej. Ford">
+
 </div>
 
+<div class="campo">
 
-<div class="input-box">
 <label>Modelo</label>
-<input id="modelo" type="text" placeholder="Ej: Focus">
+
+<input type="text">
+
 </div>
 
+<div class="campo">
 
-<div class="input-box">
 <label>Año</label>
-<input id="anio" type="number" placeholder="Ej: 2018">
+
+<input type="number">
+
 </div>
 
+<div class="campo">
 
-<div class="input-box">
-<label>Código motor</label>
-<input id="motor" type="text" placeholder="Ej: DW10">
+<label>Código Motor</label>
+
+<input type="text">
+
 </div>
 
+<div class="campo">
 
-<div class="input-box">
 <label>Cilindrada</label>
-<input id="cilindrada" type="text" placeholder="Ej: 2.0 TDCi">
+
+<input type="text">
+
 </div>
 
+<div class="campo">
 
-<div class="input-box">
+<label>Potencia (CV)</label>
+
+<input type="number">
+
+</div>
+
+<div class="campo">
+
 <label>Combustible</label>
-<select id="combustible">
-<option value="">Seleccionar</option>
-<option>Gasolina</option>
+
+<select>
+
 <option>Diésel</option>
+
+<option>Gasolina</option>
+
 <option>Híbrido</option>
+
 <option>Eléctrico</option>
+
+<option>GLP</option>
+
 </select>
-</div>
-
-
-<div class="input-box">
-<label>DTC / Código de avería</label>
-<input id="dtc" type="text" placeholder="Ej: P0401">
-</div>
-
 
 </div>
+
+<div class="campo">
+
+<label>Kilómetros</label>
+
+<input type="number">
+
+</div>
+
+</div>
+    <h2 class="titulo-seccion">Selecciona los síntomas</h2>
+
+    <div class="sintomas-grid">
+
+        <div class="card-sintoma">
+            <img src="icons/motor.svg" alt="Motor">
+            <span>Motor</span>
+        </div>
+
+        <div class="card-sintoma">
+            <img src="icons/electricidad.svg" alt="Electricidad">
+            <span>Electricidad y electrónica</span>
+        </div>
+
+        <div class="card-sintoma">
+            <img src="icons/frenos.svg" alt="Frenos">
+            <span>Frenos</span>
+        </div>
+
+        <div class="card-sintoma">
+            <img src="icons/suspension.svg" alt="Suspensión">
+            <span>Suspensión</span>
+        </div>
+
+        <div class="card-sintoma">
+            <img src="icons/direccion.svg" alt="Dirección">
+            <span>Dirección</span>
+        </div>
+
+        <div class="card-sintoma">
+            <img src="icons/transmision.svg" alt="Transmisión">
+            <span>Transmisión</span>
+        </div>
+
+        <div class="card-sintoma">
+            <img src="icons/clima.svg" alt="Climatización">
+            <span>Climatización</span>
+        </div>
+
+        <div class="card-sintoma">
+            <img src="icons/humo.svg" alt="Humo">
+            <span>Humo</span>
+        </div>
+
+        <div class="card-sintoma">
+            <img src="icons/ruido.svg" alt="Ruido">
+            <span>Ruido de motor</span>
+        </div>
+
+        <div class="card-sintoma">
+            <img src="icons/vibracion.svg" alt="Vibración">
+            <span>Vibraciones</span>
+        </div>
+
+        <div class="card-sintoma">
+            <img src="icons/temperatura.svg" alt="Temperatura">
+            <span>Temperatura</span>
+        </div>
+
+        <div class="card-sintoma">
+            <img src="icons/otros.svg" alt="Otros">
+            <span>Otros</span>
+        </div>
+
+    </div>
+
+    <h2 class="titulo-seccion">Describe la avería</h2>
+
+    <textarea
+        id="descripcion"
+        rows="8"
+        placeholder="Describe con el mayor detalle posible el problema del vehículo. Ejemplo: 'Ruido metálico al acelerar en caliente, pérdida de potencia y humo negro al acelerar fuerte.'">
+    </textarea>
+
+    <div class="boton-centro">
+
+        <button id="analizarBtn">
+
+            ANALIZAR AVERÍA
+
+        </button>
+
+    </div>
+
+    <div id="cargando">
+
+        <div class="barra">
+
+            <div id="progreso"></div>
+
+        </div>
+
+        <p>Analizando datos del vehículo...</p>
+
+    </div>
+
+    <section id="resultado">
+
+        <h2>Resultado del diagnóstico</h2>
+
+        <div class="resultado-grid">
+
+            <div class="resultado-card">
+
+                <h3>Precisión</h3>
+
+                <div class="precision">87%</div>
+
+            </div>
+
+            <div class="resultado-card">
+
+                <h3>Urgencia</h3>
+
+                <div class="urgencia media">MEDIA</div>
+
+            </div>
+
+        </div>
+
+        <div class="diagnostico">
+
+            <h3>Posibles causas</h3>
+
+            <ul>
+
+                <li>Inyector con funcionamiento irregular.</li>
+
+                <li>Fuga en circuito de admisión.</li>
+
+                <li>Caudalímetro con lectura incorrecta.</li>
+
+                <li>Soporte de motor deteriorado.</li>
+
+            </ul>
+
+        </div>
+                <div class="diagnostico">
+
+            <h3>Comprobaciones recomendadas</h3>
+
+            <ul>
+
+                <li>Leer todos los códigos DTC con un equipo de diagnosis.</li>
+
+                <li>Comprobar los valores en tiempo real de sensores.</li>
+
+                <li>Revisar fugas de aire en admisión.</li>
+
+                <li>Verificar presión del combustible.</li>
+
+                <li>Comprobar el estado de los inyectores antes de sustituir componentes.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="info-final">
+
+            <div class="card-info">
+
+                <h3>Coste aproximado</h3>
+
+                <p>150 € - 650 €</p>
+
+            </div>
+
+            <div class="card-info">
+
+                <h3>Tiempo estimado</h3>
+
+                <p>2 - 5 horas</p>
+
+            </div>
+
+        </div>
+
+        <div class="aviso">
+
+            <strong>IMPORTANTE</strong>
+
+            <p>
+
+                Este diagnóstico es orientativo y se basa en los datos facilitados.
+
+                Antes de sustituir cualquier componente se recomienda realizar las comprobaciones indicadas para evitar reparaciones innecesarias.
+
+            </p>
+
+        </div>
+
+    </section>
 
 </section>
-
-
-
-<section class="card">
-
-<h2>🔧 Selección de avería</h2>
-
-<p class="info">
-Selecciona todos los síntomas posibles para aumentar la precisión del diagnóstico.
-</p>
-
-
-<div class="symptoms">
-
-
-<button class="symptom" data-value="motor">
-⚙️<br>
-Motor
-</button>
-
-
-<button class="symptom" data-value="frenos">
-🛑<br>
-Frenos
-</button>
-
-
-<button class="symptom" data-value="suspension">
-🛞<br>
-Suspensión
-</button>
-
-
-<button class="symptom" data-value="electricidad">
-⚡<br>
-Electricidad y electrónica
-</button>
-
-
-<button class="symptom" data-value="climatizacion">
-❄️<br>
-Climatización
-</button>
-
-
-<button class="symptom" data-value="ruidos">
-🔊<br>
-Ruidos y vibraciones
-</button>
-
-
-</div>
-
-
-<textarea id="otros" placeholder="Otros síntomas..."></textarea>
-
-
-</section>
-<!-- CONTINUACIÓN FALLOMOTOR 2.0 -->
-
-
-<section class="card analysis-card">
-
-<h2>🤖 Diagnóstico inteligente</h2>
-
-<p class="info">
-Cuantos más datos introduzcas, mayor será la precisión del análisis.
-</p>
-
-
-<button id="analyzeBtn" class="main-button">
-🔍 Analizar avería
-</button>
-
-
-<div id="loading" class="loading hidden">
-
-Analizando datos del vehículo...
-
-</div>
-
-
-<div id="result" class="result hidden">
-
-
-<h3>📊 Resultado del diagnóstico</h3>
-
-
-<div class="diagnostic-grid">
-
-
-<div class="diagnostic-box">
-<span>Datos analizados</span>
-<strong id="dataCount">0</strong>
-</div>
-
-
-<div class="diagnostic-box">
-<span>Precisión estimada</span>
-<strong id="precision">Baja</strong>
-</div>
-
-
-<div class="diagnostic-box">
-<span>Nivel de urgencia</span>
-<strong id="urgency">Pendiente</strong>
-</div>
-
-
-</div>
-
-
-
-<div class="result-section">
-
-<h4>⚠️ Posibles causas</h4>
-
-<ul id="causes">
-
-<li>Realiza un análisis para obtener resultados.</li>
-
-</ul>
-
-</div>
-
-
-
-<div class="result-section">
-
-<h4>🔧 Comprobaciones recomendadas</h4>
-
-<ul id="checks">
-
-<li>Comprueba los elementos relacionados antes de sustituir piezas.</li>
-
-</ul>
-
-</div>
-
-
-
-<div class="warning">
-
-⚠️ El diagnóstico es una ayuda orientativa.
-Antes de sustituir componentes se recomienda realizar comprobaciones.
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-</main>
-
-
 
 <footer>
 
-<p>
-© 2026 FALLOMOTOR - Diagnóstico de averías asistido
-</p>
+    <div class="footer-contenido">
+
+        <img src="logo.png" class="footer-logo" alt="FALLOMOTOR">
+
+        <p>
+
+            Diagnóstico inteligente de averías mediante Inteligencia Artificial.
+
+        </p>
+
+        <div class="footer-links">
+
+            <a href="#">Política de privacidad</a>
+
+            <a href="#">Aviso legal</a>
+
+            <a href="#">Contacto</a>
+
+        </div>
+
+        <p class="copyright">
+
+            © 2026 FALLOMOTOR · Todos los derechos reservados.
+
+        </p>
+
+    </div>
 
 </footer>
 
-
-<script src="script.js"></script>
-
-
-</body>
-</html>
-<!-- FALLOMOTOR 2.0 - FINAL DEL INDEX -->
-
-<footer>
-
-<p>
-© 2026 FALLOMOTOR - Diagnóstico de averías asistido por IA
-</p>
-
-</footer>
-
-
 <script src="script.js"></script>
 
 </body>
+
 </html>
