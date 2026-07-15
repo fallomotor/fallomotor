@@ -1,265 +1,253 @@
-const symptoms = document.querySelectorAll(".symptom");
+// ======================================
+// FALLOMOTOR v2.0
+// script.js
+// ======================================
 
-let selectedSymptoms = [];
+// Variables
+const form = document.getElementById("diagnosisForm");
+const result = document.getElementById("resultado");
 
+const precisionBar = document.getElementById("precisionBar");
+const precisionText = document.getElementById("precisionText");
 
-// Selección de síntomas
+const urgency = document.getElementById("urgencia");
+const causes = document.getElementById("causas");
+const checks = document.getElementById("comprobaciones");
 
-symptoms.forEach(button => {
+function calcularPrecision(){
 
-    button.addEventListener("click", () => {
+let puntos = 0;
 
-        button.classList.toggle("active");
+const campos = [
 
-        const value = button.dataset.value;
-
-
-        if(selectedSymptoms.includes(value)){
-
-            selectedSymptoms = selectedSymptoms.filter(item => item !== value);
-
-        } else {
-
-            selectedSymptoms.push(value);
-
-        }
-
-    });
-
-});
-
-
-
-// Botón analizar
-
-document.getElementById("analyzeBtn").addEventListener("click", () => {
-
-
-const loading = document.getElementById("loading");
-const result = document.getElementById("result");
-
-
-loading.classList.remove("hidden");
-result.classList.add("hidden");
-
-
-
-setTimeout(()=>{
-
-
-loading.classList.add("hidden");
-result.classList.remove("hidden");
-
-
-
-let datos = 0;
-
-
-// Contar datos del vehículo
-
-const fields = [
 "marca",
 "modelo",
 "anio",
-"motor",
-"cilindrada",
 "combustible",
+"cilindrada",
+"codigoMotor",
 "dtc"
+
 ];
 
+campos.forEach(id=>{
 
-fields.forEach(id=>{
+const valor=document.getElementById(id).value;
 
-if(document.getElementById(id).value){
-
-datos++;
-
-}
+if(valor!="") puntos++;
 
 });
 
+const sintomas=document.querySelectorAll(".symptom.active");
 
-// Añadir síntomas
+puntos+=sintomas.length;
 
-datos += selectedSymptoms.length;
+let porcentaje=Math.round((puntos/13)*100);
 
+if(porcentaje>100) porcentaje=100;
 
+precisionBar.style.width=porcentaje+"%";
 
-if(document.getElementById("otros").value){
+precisionText.innerHTML=porcentaje+"%";
 
-datos++;
-
-}
-
-
-
-document.getElementById("dataCount").innerHTML = datos;
-
-
-
-// Precisión
-
-let precision="Baja";
-
-
-if(datos >= 8){
-
-precision="Alta";
+return porcentaje;
 
 }
 
-else if(datos >=4){
+document.querySelectorAll("input,select,textarea").forEach(el=>{
 
-precision="Media";
+el.addEventListener("input",calcularPrecision);
 
-}
+});
 
+document.querySelectorAll(".symptom").forEach(btn=>{
 
-document.getElementById("precision").innerHTML = precision;
+btn.addEventListener("click",()=>{
 
+btn.classList.toggle("active");
 
+calcularPrecision();
 
-// Urgencia
+});
 
-let urgency="Media";
+});
+// ======================================
+// Diagnóstico inteligente
+// ======================================
 
+form.addEventListener("submit", function (e) {
 
-if(selectedSymptoms.includes("motor")){
+    e.preventDefault();
 
-urgency="Revisar pronto";
+    let precision = calcularPrecision();
 
-}
+    let sintomas = [];
 
-if(selectedSymptoms.includes("frenos")){
+    document.querySelectorAll(".symptom.active").forEach(function (s) {
+        sintomas.push(s.dataset.symptom);
+    });
 
-urgency="Alta";
+    let nivelPrecision = "Baja";
 
-}
+    if (precision >= 80) {
+        nivelPrecision = "Muy alta";
+    } else if (precision >= 60) {
+        nivelPrecision = "Alta";
+    } else if (precision >= 40) {
+        nivelPrecision = "Media";
+    }
 
+    let nivelUrgencia = "Baja";
 
-document.getElementById("urgency").innerHTML = urgency;
+    let posibles = [];
+    let comprobaciones = [];
 
+    // ----------------------------
+    // HUMO BLANCO
+    // ----------------------------
 
+    if (sintomas.includes("humo_blanco")) {
+
+        nivelUrgencia = "Alta";
+
+        posibles.push(
+            "Junta de culata dañada",
+            "Refrigerante entrando en la combustión",
+            "Fisura en culata",
+            "Enfriador EGR averiado"
+        );
 
+        comprobaciones.push(
+            "Comprobar consumo de refrigerante.",
+            "Realizar prueba de CO₂ en el vaso de expansión.",
+            "Comprobar presión del circuito.",
+            "Verificar el enfriador EGR."
+        );
+    }
 
-// Diagnóstico básico
+    // ----------------------------
+    // RUIDO MOTOR
+    // ----------------------------
 
-let causes = [];
-let checks = [];
+    if (sintomas.includes("ruido_motor")) {
 
+        nivelUrgencia = "Alta";
 
+        posibles.push(
+            "Taqué hidráulico",
+            "Inyector defectuoso",
+            "Biela",
+            "Cadena o correa de distribución",
+            "Polea del cigüeñal",
+            "Volante bimasa"
+        );
 
-if(selectedSymptoms.includes("motor")){
+        comprobaciones.push(
+            "Escuchar el motor con estetoscopio.",
+            "Leer correcciones de inyectores.",
+            "Comprobar presión de aceite.",
+            "Revisar distribución."
+        );
+    }
 
-causes.push(
-"Posible problema relacionado con combustión, inyección, lubricación o componentes internos del motor."
-);
+    // ----------------------------
+    // RUIDO FRENOS
+    // ----------------------------
 
-checks.push(
-"Comprobar niveles, ruidos, valores de diagnosis y funcionamiento del sistema de inyección."
-);
-
-}
-
-
-
-if(selectedSymptoms.includes("frenos")){
-
-causes.push(
-"Posible desgaste o fallo en componentes del sistema de frenado."
-);
-
-checks.push(
-"Revisar pastillas, discos, líquido de frenos y posibles fugas."
-);
-
-}
-
-
-
-if(selectedSymptoms.includes("suspension")){
-
-causes.push(
-"Posible desgaste en amortiguadores, silentblocks o elementos de suspensión."
-);
-
-checks.push(
-"Realizar inspección visual y comprobar holguras."
-);
-
-}
-
-
-
-if(selectedSymptoms.includes("electricidad")){
-
-causes.push(
-"Posible fallo eléctrico, sensor o comunicación electrónica."
-);
-
-checks.push(
-"Leer códigos DTC y comprobar alimentación eléctrica."
-);
-
-}
-
-
-
-if(selectedSymptoms.includes("climatizacion")){
-
-causes.push(
-"Posible problema en circuito de climatización."
-);
-
-checks.push(
-"Comprobar presión del circuito y funcionamiento del compresor."
-);
-
-}
-
-
-
-if(selectedSymptoms.includes("ruidos")){
-
-causes.push(
-"Ruido procedente de algún componente mecánico que requiere localización."
-);
-
-checks.push(
-"Identificar zona exacta del ruido y comprobar piezas relacionadas."
-);
-
-}
-
-
-
-if(causes.length===0){
-
-causes.push(
-"Selecciona más síntomas para obtener un diagnóstico más preciso."
-);
-
-checks.push(
-"Aporta más información del vehículo y las condiciones del fallo."
-);
-
-}
-
-
-
-
-document.getElementById("causes").innerHTML =
-causes.map(item=>`<li>${item}</li>`).join("");
-
-
-
-document.getElementById("checks").innerHTML =
-checks.map(item=>`<li>${item}</li>`).join("");
-
-
-
-},1500);
-
-
+    if (sintomas.includes("ruido_frenos")) {
+
+        posibles.push(
+            "Pastillas desgastadas",
+            "Discos deformados",
+            "Pinza gripada",
+            "Protector del disco doblado"
+        );
+
+        comprobaciones.push(
+            "Medir espesor de pastillas.",
+            "Revisar discos.",
+            "Comprobar movimiento de pinzas."
+        );
+    }
+
+    // ----------------------------
+    // RUIDO SUSPENSIÓN
+    // ----------------------------
+
+    if (sintomas.includes("ruido_suspension")) {
+
+        posibles.push(
+            "Bieletas",
+            "Copelas",
+            "Amortiguadores",
+            "Silentblocks",
+            "Rótulas"
+        );
+
+        comprobaciones.push(
+            "Comprobar holguras.",
+            "Revisar amortiguadores.",
+            "Inspeccionar silentblocks."
+        );
+    }
+        // ----------------------------
+    // DIRECCIÓN
+    // ----------------------------
+
+    if (sintomas.includes("ruido_direccion")) {
+
+        posibles.push(
+            "Terminales de dirección desgastados",
+            "Rótulas con holgura",
+            "Cremallera de dirección",
+            "Bomba de dirección asistida"
+        );
+
+        comprobaciones.push(
+            "Comprobar holguras en terminales.",
+            "Revisar la cremallera.",
+            "Verificar el nivel del líquido de dirección."
+        );
+    }
+
+    // Si no se ha detectado ninguna avería concreta
+
+    if (posibles.length === 0) {
+
+        posibles.push(
+            "No hay información suficiente para realizar un diagnóstico preciso."
+        );
+
+        comprobaciones.push(
+            "Añade más síntomas y datos del vehículo para aumentar la precisión."
+        );
+    }
+
+    // Eliminar duplicados
+
+    posibles = [...new Set(posibles)];
+    comprobaciones = [...new Set(comprobaciones)];
+
+    // Mostrar resultados
+
+    urgency.innerHTML = nivelUrgencia;
+
+    causes.innerHTML = posibles
+        .map(item => "<li>" + item + "</li>")
+        .join("");
+
+    checks.innerHTML = comprobaciones
+        .map(item => "<li>" + item + "</li>")
+        .join("");
+
+    document.getElementById("nivelPrecision").innerHTML = nivelPrecision;
+
+    result.style.display = "block";
+
+    // Desplazamiento suave al resultado
+
+    result.scrollIntoView({
+        behavior: "smooth"
+    });
 
 });
